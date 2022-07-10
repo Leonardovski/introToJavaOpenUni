@@ -1,0 +1,21 @@
+public static boolean splitEqualMulti(int[] a) {
+        return splitEqualMulti(a, 0, 1, 1);
+    }
+
+    private static boolean splitEqualMulti(int[] a, int i, int sumA, int sumB) {
+
+        if (i == a.length && sumA == sumB) {
+            return true;
+        }
+
+        if (i == a.length) { // sumA != sumB
+            return false;
+        }
+
+        boolean takeSumA = splitEqualMulti(a, i + 1, sumA * a[i], sumB); // take to Set A
+        boolean takeSumB = splitEqualMulti(a, i + 1, sumA, sumB * a[i]); // or take to Set B
+
+
+        return takeSumA || takeSumB;
+
+    }
